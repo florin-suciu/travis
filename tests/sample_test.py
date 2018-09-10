@@ -4,3 +4,8 @@ import pytest
 @pytest.mark.regression
 def test_the_truth():
     assert True
+
+
+@pytest.mark.regression
+def test_the_falsehood():
+    assert not False
