@@ -1,19 +1,22 @@
+from os import path
+
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = 'https://www.googleapis.com/auth/drive'
+SCOPES = 'https://www.googleapis.com/auth/drive.file'
+JSON_LOCATION = 'tests/utils/gdrive'
 
 
 def main():
     """Shows basic usage of the Drive v3 API.
     Prints the names and ids of the first 10 files the user has access to.
     """
-    store = file.Storage('tests\\utils\\gdrive\\token.json')
+    store = file.Storage(path.join(JSON_LOCATION, 'token.json'))
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('tests\\utils\\gdrive\\credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets(path.join(JSON_LOCATION, 'credentials.json'), SCOPES)
         creds = tools.run_flow(flow, store)
     service = build('drive', 'v3', http=creds.authorize(Http()))
 

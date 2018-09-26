@@ -7,8 +7,9 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 
 # If modifying these scopes, delete the file token.json.
-SCOPES = 'https://www.googleapis.com/auth/drive'
+SCOPES = 'https://www.googleapis.com/auth/drive.file'
 JSON_LOCATION = 'tests/utils/gdrive'
+FOLDER_ID = '0B8EKbFOBYbsLMVF0YUxvSEhuMGM'
 
 
 def upload_file():
@@ -20,11 +21,10 @@ def upload_file():
         creds = tools.run_flow(flow, store)
     service = build('drive', 'v3', http=creds.authorize(Http()))
 
-    folder_id = '0B8EKbFOBYbsLMVF0YUxvSEhuMGM'
     time_str = time.strftime("%Y-%m-%d-%H:%M:%S")
     file_metadata = {
         'name': 'report-{}.html'.format(time_str),
-        'parents': [folder_id]
+        'parents': [FOLDER_ID]
     }
 
     media = MediaFileUpload(path.join('reports', 'report.html'),
