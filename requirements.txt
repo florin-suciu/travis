@@ -1,3 +1,5 @@
+requests
+pycurl
 apipkg==1.5
 atomicwrites==1.2.1
 attrs==18.2.0
@@ -27,3 +29,4 @@ pytest-xdist==1.23.0
 rsa==3.4.2
 six==1.11.0
 uritemplate==3.0.0
+PyGithub
