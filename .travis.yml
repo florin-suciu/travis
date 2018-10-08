@@ -6,7 +6,7 @@ install:
 script:
   - pytest --html=reports/report.html --self-contained-html
 after_script:
-  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then echo "Tests passed - Branch($TRAVIS_BRANCH) Pull Request($TRAVIS_PULL_REQUEST) Tag($TRAVIS_TAG)"; else echo "Tests failed"; fi
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then TEST_MESSAGE="Tests passed -"; else TEST_MESSAGE="Tests failed -"; fi
   - TEST_REPORT_DOWNLOAD_URL=$(python tests/utils/gdrive/upload_test_report.py)
   - echo $TEST_REPORT_DOWNLOAD_URL
-  - python tests/utils/gdrive/comment.py $AUTH_KEY $TRAVIS_REPO_SLUG $TRAVIS_PULL_REQUEST $TEST_REPORT_DOWNLOAD_URL
+  - python tests/utils/gdrive/comment.py $AUTH_KEY $TRAVIS_REPO_SLUG $TRAVIS_PULL_REQUEST "$TEST_MESSAGE $TEST_REPORT_DOWNLOAD_URL"
