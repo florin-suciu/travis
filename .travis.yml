@@ -3,7 +3,7 @@ python:
   - "3.6"
 before_install:
   - openssl aes-256-cbc -K $encrypted_0bca2f791d10_key -iv $encrypted_0bca2f791d10_iv -in secrets.tar.enc -out tests/utils/gdrive/secrets.tar -d
-  - tar xvf tests/utils/gdrive/secrets.tar -C tests/utils/gdrive
+  - tar xvf secrets.tar -C tests/utils/gdrive
 install:
   - pip install -r requirements.txt
 script:
