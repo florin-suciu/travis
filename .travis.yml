@@ -1,13 +1,19 @@
 language: python
 python:
   - "3.6"
+addons:
+  chrome: stable
 before_install:
   - openssl aes-256-cbc -K $encrypted_0bca2f791d10_key -iv $encrypted_0bca2f791d10_iv -in tests/utils/gdrive/secrets.tar.enc -out tests/utils/gdrive/secrets.tar -d
   - tar xvf tests/utils/gdrive/secrets.tar -C tests/utils/gdrive
 install:
   - pip install -r requirements.txt
+  - chmod +x tests/utils/chromedriver/chromedriver
+  - ln -s tests/utils/chromedriver/chromedriver /usr/local/bin/chromedriver
 script:
   - pytest --html=reports/report.html --self-contained-html
+  - whereis google-chrome-stable
+  - whereis chromedriver
 after_script:
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then TEST_MESSAGE="Tests passed -"; else TEST_MESSAGE="Tests failed -"; fi
   - TEST_REPORT_DOWNLOAD_URL=$(python tests/utils/gdrive/upload_test_report.py)
