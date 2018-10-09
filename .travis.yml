@@ -2,8 +2,8 @@ language: python
 python:
   - "3.6"
 before_install:
-  - openssl aes-256-cbc -K $encrypted_6042638369ba_key -iv $encrypted_6042638369ba_iv -in tests/utils/gdrive/token.json.enc -out tests/utils/gdrive/token.json -d
-  - openssl aes-256-cbc -K $encrypted_6042638369ba_key -iv $encrypted_6042638369ba_iv -in tests/utils/gdrive/credentials.json.enc -out tests/utils/gdrive/credentials.json -d
+  - openssl aes-256-cbc -K $encrypted_0bca2f791d10_key -iv $encrypted_0bca2f791d10_iv -in tests/utils/gdrive/secrets.tar.enc -out tests/utils/gdrive/secrets.tar -d
+  - tar xvf tests/utils/gdrive/secrets.tar -C tests/utils/gdrive
 install:
   - pip install -r requirements.txt
 script:
