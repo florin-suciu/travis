@@ -10,7 +10,7 @@ before_install:
 install:
   - pip install -r requirements.txt
   - chmod +x tests/utils/chromedriver/chromedriver
-  - ln -s tests/utils/chromedriver/chromedriver /usr/local/bin/chromedriver
+  - sudo ln -s tests/utils/chromedriver/chromedriver /usr/local/bin/chromedriver
 script:
   - pytest --html=reports/report.html --self-contained-html
   - whereis google-chrome-stable
