@@ -14,7 +14,10 @@ install:
 script:
   - pytest --html=reports/report.html --self-contained-html
   - whereis google-chrome-stable
+  - google-chrome-stable --version
   - whereis chromedriver
+  - chromedriver -v
+  - chromedriver --version
 after_script:
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then TEST_MESSAGE="Tests passed -"; else TEST_MESSAGE="Tests failed -"; fi
   - TEST_REPORT_DOWNLOAD_URL=$(python tests/utils/gdrive/upload_test_report.py)
