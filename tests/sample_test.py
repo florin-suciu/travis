@@ -17,7 +17,7 @@ def test_the_falsehood():
 @pytest.mark.regression
 @pytest.mark.ui
 def test_selenium():
-    service = Service("/usr/local/bin/chromedriver")
+    service = Service("tests/utils/chromedriver/chromedriver")
     service.start()
 
     chrome_options = Options()
