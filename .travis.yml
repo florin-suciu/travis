@@ -20,3 +20,4 @@ after_script:
   - TEST_REPORT_DOWNLOAD_URL=$(python tests/utils/gdrive/upload_test_report.py)
   - echo $TEST_REPORT_DOWNLOAD_URL
   - python tests/utils/gdrive/comment.py $GITHUB_KEY $TRAVIS_REPO_SLUG $TRAVIS_PULL_REQUEST "$TEST_MESSAGE $TEST_REPORT_DOWNLOAD_URL"
+  - python tests/utils/gdrive/upload_file_to_gdrive.py capture01.png
