@@ -28,8 +28,8 @@ def test_selenium():
     driver = webdriver.Remote(service.service_url, desired_capabilities=chrome_options.to_capabilities())
 
     driver.get("http://www.google.ro")
-    lucky_button = driver.find_element_by_css_selector("[name=btnI]")
-    lucky_button.click()
+    # lucky_button = driver.find_element_by_css_selector("[name=btnI]")
+    # lucky_button.click()
 
     driver.get_screenshot_as_file("capture01.png")
 
