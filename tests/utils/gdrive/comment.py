@@ -4,11 +4,12 @@ import json
 import requests
 
 TESTS_PASSED = "Tests passed - "
+TESTS_FAILED = "Tests failed - "
 
 
 def remove_previous_comments(header, repo, pr, comment):
     """If the current comment is a Tests passed one, remove all previous Tests passed comments for this pr"""
-    if not comment.startswith(TESTS_PASSED):
+    if not (comment.startswith(TESTS_PASSED) or comment.startswith(TESTS_PASSED)):
         return
 
     r = requests.get('https://api.github.com/repos/{}/issues/{}/comments'.format(repo, pr), headers=header)
@@ -17,7 +18,7 @@ def remove_previous_comments(header, repo, pr, comment):
     json_data = json.loads(r.content)
     to_delete = []
     for comment in json_data:
-        if comment.get('body').startswith(TESTS_PASSED):
+        if comment.get('body').startswith(TESTS_PASSED) or comment.get('body').startswith(TESTS_FAILED):
             to_delete.append(comment.get('id'))
 
     for comment_id in to_delete:
